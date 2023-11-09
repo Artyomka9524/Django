@@ -1,0 +1,40 @@
+{% extends 'blog_app/base.html' %}
+
+{% block h1 %}
+    {{ article.title }}
+{% endblock h1 %}
+{% block content %}
+    <div>
+        <p>Дата публикации: {{ article.publication_date }} {{ article.views }} просмотров</p>
+    </div>
+    <div>
+        {% if article %}
+            <p>{{ article.content | wordwrap:100 }} </p>
+        {% else %}
+            {% lorem 3 p %}
+        {% endif %}
+
+    </div>
+
+{% endblock content %}
+
+{% block comments %}
+
+    <h3>Добавить комментарий</h3>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save comment">
+    </form>
+    <h3>Комментарии:</h3>
+    <ul>
+        {% for comment in comments %}
+            <li><p>Автор комментария: <b>{{ comment.author }}</b><br>{{ comment.comment }}</p> <b>
+                {% if comment.updated %}
+                    Изменялся
+                {% endif %} </b></li>
+        {% endfor %}
+
+    </ul>
+
+{% endblock comments %}

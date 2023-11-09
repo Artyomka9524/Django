@@ -1,0 +1,21 @@
+{% extends 'blog_app/base.html' %}
+
+{% block h1 %}
+    {{ title }}
+{% endblock h1 %}
+{% block content %}
+    {% if articles %}
+        <ul>
+            {% for article in articles %}
+                {% if article.is_published %}
+                    <li><a href="{% url 'article_full' article.pk %}" target="_blank">{{ article.title }}</a></li>
+                {% else %}
+                    <li>{{ article.title }} - <i>Не опубликована</i></li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Автор статей не имеет</p>
+    {% endif %}
+
+{% endblock content %}

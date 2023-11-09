@@ -1,0 +1,16 @@
+{% extends 'blog_app/base.html' %}
+
+{% block h1 %}
+    Все авторы:
+{% endblock h1 %}
+{% block content %}
+
+    <ul>
+        {% for author in authors %}
+            <li><a href="{% url 'articles_by_author' author.pk %}" target="_blank">{{ author.full_name }}</a></li>
+        {% endfor %}
+    </ul>
+    <br>
+    <b><a href="{% url 'add_new_author' %}">Add new Author</a></b>
+    <b><a href="{% url 'add_new_article' %}">Add new Article</a></b>
+{% endblock content %}

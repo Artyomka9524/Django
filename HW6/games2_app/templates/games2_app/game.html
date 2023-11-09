@@ -1,0 +1,12 @@
+{% extends 'games2_app/base.html' %}
+
+{% block h1 %}
+    {{ title }}
+{% endblock h1 %}
+{% block content %}
+    <ul>
+        {% for k, v in res.items %}
+            <li>Попытка:{{ k }} - выпало {{ v }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
